@@ -16,11 +16,13 @@ jobs:
       - name: Build checkout-api
         run: docker build -t checkout-api:ci .
 
+        #requested url for healthz returned 404 in actions & curl didnt work
+        #grep -R "health" -n shows /health is the right endpoint
       - name: Test checkout-api
         run: |
           docker run -d -p 8000:8000 --name checkout-api-test checkout-api:ci
           sleep 3
-          curl -f http://localhost:8000/healthz
+          curl -f http://localhost:8000/health 
           docker rm -f checkout-api-test
 
       - name: Validate scaling policy
