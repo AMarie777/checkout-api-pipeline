@@ -2,7 +2,7 @@ name: checkout-api CI
 
 on:
   push:
-    branches: [master] #[main] #git branch --show-current shows main, not master
+    branches: [main] #[main] #git branch --show-current shows main, not master
 
 permissions:
   contents: read
